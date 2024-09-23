@@ -20,7 +20,7 @@
     "*.{ts,html,css,scss,json,md}": [
       "prettier --write"
     ],
-    "src/**/*.{ts}": [
+    "src/**/*.ts": [
       "eslint --max-warnings 0"
     ]
   },
