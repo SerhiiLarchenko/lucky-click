@@ -1,7 +1,9 @@
 {
   "name": "lucky-click",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
+  "description": "Test task app for a slot machine",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
