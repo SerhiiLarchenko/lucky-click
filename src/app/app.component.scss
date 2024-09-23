@@ -1,0 +1,15 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.logo {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: goldenrod;
+}

@@ -1,0 +1,105 @@
+$spacing: 20px;
+
+.slot-machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing;
+
+  .balance {
+    color: gold;
+    font-weight: 700;
+  }
+
+  .reels {
+    display: flex;
+    justify-content: center;
+    column-gap: $spacing;
+    height: 240px;
+    overflow: hidden;
+
+    .reel {
+      &.spinning {
+        animation: spin 1s infinite ease-in;
+
+        &:nth-child(1) {
+          animation-delay: 0.1s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: 0.2s;
+        }
+      }
+    }
+
+    .number {
+      height: 80px;
+      font-size: 80px;
+      line-height: 1;
+      font-family: 'Protest Guerrilla', sans-serif;
+
+      &.n1 {
+        color: magenta;
+      }
+
+      &.n2 {
+        color: aqua;
+      }
+
+      &.n3 {
+        color: firebrick;
+      }
+
+      &.n4 {
+        color: yellow;
+      }
+
+      &.n5 {
+        color: cyan;
+      }
+
+      &.n6 {
+        color: crimson;
+      }
+
+      &.n7 {
+        color: deeppink;
+      }
+
+      &.n8 {
+        color: chartreuse;
+      }
+
+      &.n9 {
+        color: springgreen;
+      }
+    }
+  }
+
+  .bets {
+    display: flex;
+    justify-content: center;
+    gap: $spacing;
+    padding: $spacing;
+  }
+
+  .win-message {
+    color: limegreen;
+  }
+
+  .error-message {
+    color: maroon;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
