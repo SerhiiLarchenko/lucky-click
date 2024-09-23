@@ -10,7 +10,11 @@
     "watch-tests": "ng test",
     "test": "ng test --watch=false --browsers=ChromeHeadless --code-coverage",
     "lint": "ng lint",
-    "format": "prettier --write \"src/**/*.{ts,html,css,scss,json,md}\""
+    "format": "prettier --write \"src/**/*.{ts,html,css,scss,json,md}\"",
+    "push-tags": "git push origin --tags && git push origin HEAD",
+    "release:major": "npm version major && npm run push-tags",
+    "release:minor": "npm version minor && npm run push-tags",
+    "release:patch": "npm version patch && npm run push-tags"
   },
   "lint-staged": {
     "*.{ts,html,css,scss,json,md}": [
