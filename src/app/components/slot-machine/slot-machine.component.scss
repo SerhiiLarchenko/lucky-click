@@ -9,6 +9,7 @@ $spacing: 20px;
   .balance {
     color: gold;
     font-weight: 700;
+    text-align: center;
   }
 
   .reels {
@@ -79,6 +80,7 @@ $spacing: 20px;
   .bets {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: $spacing;
     padding: $spacing;
   }
