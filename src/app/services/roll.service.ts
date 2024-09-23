@@ -1,11 +1,8 @@
-import { A } from '@angular/cdk/keycodes';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class RollService {
   private winCoefficient = 10;
-
-  constructor() {}
 
   private getRandomSymbol(): number {
     return Math.floor(Math.random() * 9) + 1;
@@ -32,7 +29,7 @@ export class RollService {
       [rolls[0][2], rolls[1][1], rolls[2][0]],
     ];
 
-    return lines.some((line) => line.every((num) => num === line[0]));
+    return lines.some(line => line.every(num => num === line[0]));
   }
 
   public isWinningRoll(rolls: number[][]): {

@@ -26,8 +26,8 @@ export class SlotMachineComponent implements OnInit {
   public rolls: number[][] = [];
   public winAmount: number | null = null;
 
-  public loading: boolean = false;
-  public spinning: boolean = false;
+  public loading = false;
+  public spinning = false;
   public spinningRolls: number[][] = [];
   public error: string | null = null;
 
@@ -42,7 +42,7 @@ export class SlotMachineComponent implements OnInit {
 
   initGame(): void {
     this.loading = true;
-    this.apiService.init(this.userId).subscribe((data) => {
+    this.apiService.init(this.userId).subscribe(data => {
       this.balance = data.balance;
       this.bets = data.bets;
       this.lastBet = data.lastBet;
@@ -57,7 +57,7 @@ export class SlotMachineComponent implements OnInit {
     this.error = '';
     this.winAmount = 0;
 
-    this.apiService.spin(this.userId, bet).subscribe((res) => {
+    this.apiService.spin(this.userId, bet).subscribe(res => {
       this.error = res.error;
       this.balance = res.data.balance;
       this.lastBet = res.data.lastBet;

@@ -1,4 +1,3 @@
-
 import { TestBed } from '@angular/core/testing';
 import { RollService } from './roll.service';
 
@@ -30,7 +29,7 @@ describe('RollService', () => {
     const winningRolls = [
       [1, 1, 1],
       [2, 2, 2],
-      [3, 3, 3]
+      [3, 3, 3],
     ];
     const isWinning = service['isWinningLine'](winningRolls);
     expect(isWinning).toBeTrue();
@@ -40,7 +39,7 @@ describe('RollService', () => {
     const nonWinningRolls = [
       [1, 2, 3],
       [4, 5, 6],
-      [7, 8, 9]
+      [7, 8, 9],
     ];
     const isWinning = service['isWinningLine'](nonWinningRolls);
     expect(isWinning).toBeFalse();
@@ -50,7 +49,7 @@ describe('RollService', () => {
     const winningRolls = [
       [1, 1, 1],
       [2, 2, 2],
-      [3, 3, 3]
+      [3, 3, 3],
     ];
     const result = service.isWinningRoll(winningRolls);
     expect(result.win).toBeTrue();
@@ -61,7 +60,7 @@ describe('RollService', () => {
     const nonWinningRolls = [
       [1, 2, 3],
       [4, 5, 6],
-      [7, 8, 9]
+      [7, 8, 9],
     ];
     const result = service.isWinningRoll(nonWinningRolls);
     expect(result.win).toBeFalse();

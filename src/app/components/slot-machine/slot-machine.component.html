@@ -7,22 +7,27 @@
 
   <div *ngIf="!spinning" class="reels">
     <div class="reel" *ngFor="let reel of rolls">
-      <div *ngFor="let number of reel" class="number n{{number}}">
-          {{ number }}
+      <div *ngFor="let number of reel" class="number n{{ number }}">
+        {{ number }}
       </div>
     </div>
   </div>
 
   <div *ngIf="spinning" class="reels spinning">
     <div class="reel spinning" *ngFor="let reel of spinningRolls">
-      <div *ngFor="let number of reel" class="number n{{number}}">
-          {{ number }}
+      <div *ngFor="let number of reel" class="number n{{ number }}">
+        {{ number }}
       </div>
     </div>
   </div>
 
   <div class="bets">
-    <button *ngFor="let bet of bets" (click)="placeBet(bet)" [disabled]="spinning" mat-fab extended>
+    <button
+      *ngFor="let bet of bets"
+      (click)="placeBet(bet)"
+      [disabled]="spinning"
+      mat-fab
+      extended>
       <mat-icon>monetization_on</mat-icon>
       Bet {{ bet }}
     </button>
@@ -33,6 +38,6 @@
   </div>
 
   <div *ngIf="error" class="error-message">
-    <h3 >{{ error }}</h3>
+    <h3>{{ error }}</h3>
   </div>
 </div>
