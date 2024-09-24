@@ -8,11 +8,11 @@ import { RollService } from './roll.service';
 export class MockApiService {
   private delayTime = 2000;
   private lsMockDataKey = 'luckyClickMockData';
-  private userData: { [uid: number]: IUser } = {};
+  private usersData: Record<number, IUser> = {};
 
   constructor(private rollService: RollService) {
     const storedData = localStorage.getItem(this.lsMockDataKey);
-    if (storedData) this.userData = JSON.parse(storedData);
+    if (storedData) this.usersData = JSON.parse(storedData);
   }
 
   private generateMockUserData(uid: number): IUser {
@@ -23,24 +23,28 @@ export class MockApiService {
       bets: [10, 20, 50, 100],
       rolls: this.rollService.generateNonWinningRolls(),
       winAmount: 0,
+      amountToBuy: 1000,
     };
   }
 
   private saveUserData(user: IUser): void {
     localStorage.setItem(
       this.lsMockDataKey,
-      JSON.stringify({ ...this.userData, [user.uid]: user })
+      JSON.stringify({ ...this.usersData, [user.uid]: user })
     );
   }
 
   public init(uid: number): Observable<IUser> {
-    let user = this.userData[uid];
+    let user = this.usersData[uid];
 
-    if (!user) {
+    if (typeof user === 'object') {
+      user = { ...this.generateMockUserData(uid), ...user };
+    } else {
       user = this.generateMockUserData(uid);
-      this.userData[uid] = user;
-      this.saveUserData(user);
+      this.usersData[uid] = user;
     }
+
+    this.saveUserData(user);
 
     return of(user).pipe(delay(this.delayTime));
   }
@@ -49,7 +53,7 @@ export class MockApiService {
     uid: number,
     bet: number
   ): Observable<{ error: string | null; data: IUser }> {
-    let user = this.userData[uid];
+    const user = this.usersData[uid];
 
     if (!user) {
       return this.init(uid).pipe(switchMap(() => this.spin(uid, bet)));
@@ -79,5 +83,16 @@ export class MockApiService {
     this.saveUserData(user);
 
     return of({ error: null, data: user }).pipe(delay(this.delayTime));
+  }
+
+  public buy(uid: number): Observable<IUser> {
+    const user = this.usersData[uid];
+
+    if (!user) return this.init(uid);
+
+    user.balance += user.amountToBuy;
+    this.saveUserData(user);
+
+    return of(user).pipe(delay(this.delayTime));
   }
 }

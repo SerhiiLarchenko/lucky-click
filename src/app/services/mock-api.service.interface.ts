@@ -5,4 +5,5 @@ export interface IUser {
   bets: number[];
   rolls: number[][];
   winAmount: number | null;
+  amountToBuy: number;
 }

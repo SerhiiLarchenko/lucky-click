@@ -25,7 +25,8 @@ export class SlotMachineComponent implements OnInit {
   public lastBet: number | null = null;
   public rolls: number[][] = [];
   public winAmount: number | null = null;
-
+  public amountToBuy: number | null = null;
+  public haveToBuy = false;
   public loading = false;
   public spinning = false;
   public spinningRolls: number[][] = [];
@@ -47,6 +48,8 @@ export class SlotMachineComponent implements OnInit {
       this.bets = data.bets;
       this.lastBet = data.lastBet;
       this.rolls = data.rolls;
+      this.amountToBuy = data.amountToBuy;
+      this.haveToBuy = data.bets[0] > data.balance;
       this.loading = false;
     });
   }
@@ -63,7 +66,19 @@ export class SlotMachineComponent implements OnInit {
       this.lastBet = res.data.lastBet;
       this.rolls = res.data.rolls;
       this.winAmount = res.data.winAmount;
+      this.amountToBuy = res.data.amountToBuy;
+      this.haveToBuy = res.data.bets[0] > res.data.balance;
       this.spinning = false;
+    });
+  }
+
+  buyCoins(): void {
+    this.loading = true;
+    this.apiService.buy(this.userId).subscribe(data => {
+      this.balance = data.balance;
+      this.amountToBuy = data.amountToBuy;
+      this.haveToBuy = data.bets[0] > data.balance;
+      this.loading = false;
     });
   }
 }
