@@ -40,4 +40,14 @@
   <div *ngIf="error" class="error-message">
     <h3>{{ error }}</h3>
   </div>
+
+  <button
+    (click)="buyCoins()"
+    *ngIf="haveToBuy"
+    [disabled]="spinning"
+    mat-fab
+    extended>
+    <mat-icon>attach_money</mat-icon>
+    Buy {{ amountToBuy }} coins
+  </button>
 </div>
